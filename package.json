@@ -1,0 +1,42 @@
+{
+  "name": "@sahib/design-system",
+  "version": "1.0.0",
+  "description": "نظام التصميم لصاحب - Arabic RTL Design System",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "fela": "^12.3.0",
+    "react-fela": "^12.3.0",
+    "fela-utils": "^12.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@storybook/react": "^7.6.0",
+    "@storybook/react-webpack5": "^7.6.0",
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-a11y": "^7.6.0",
+    "@storybook/addon-rtl": "^1.0.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.3.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  }
+}
