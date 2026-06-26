@@ -41,10 +41,10 @@ function ColorTokenCard({ token, value, onChange, isDark }) {
         <div className="flex-1 flex flex-col gap-1">
           <input type="text" value={value} onChange={(e) => onChange(e.target.value)}
             data-testid={`hex-input-${token.id.replace(/-/g,'_')}`}
-            className="w-full text-sm bg-transparent outline-none border-b pb-0.5 transition-colors font-mono"
-            style={{ color: text, borderColor: border, fontFamily: "'IBM Plex Mono',monospace" }}
+            className="w-full text-sm bg-transparent outline-none border-b pb-0.5 transition-colors"
+            style={{ color: text, borderColor: border }}
             placeholder="#000000" />
-          <code className="text-xs" style={{ color: muted, fontFamily: "'IBM Plex Mono',monospace" }}>{token.id}</code>
+          <code className="text-xs" style={{ color: muted }}>{token.id}</code>
         </div>
       </div>
     </div>
@@ -64,12 +64,12 @@ function TextTokenCard({ token, value, onChange, isDark }) {
       style={{ background: bg, border: `1px solid ${border}` }}>
       <div className="flex items-center justify-between mb-2">
         <span className="text-sm font-medium" style={{ color: text }}>{token.labelAr}</span>
-        <code className="text-xs" style={{ color: muted, fontFamily: "'IBM Plex Mono',monospace" }}>{token.id}</code>
+        <code className="text-xs" style={{ color: muted }}>{token.id}</code>
       </div>
       <input type="text" value={value} onChange={(e) => onChange(e.target.value)}
         data-testid={`text-input-${token.id.replace(/-/g,'_')}`}
         className="w-full text-sm px-3 py-2 rounded-lg outline-none transition-colors"
-        style={{ background: inputBg, border: `1px solid ${border}`, color: text, fontFamily: "'IBM Plex Mono',monospace" }} />
+        style={{ background: inputBg, border: `1px solid ${border}`, color: text }} />
     </div>
   );
 }
@@ -146,8 +146,8 @@ export default function EditorPanel() {
         style={{ background: headerBg, borderBottom: `1px solid ${border}` }}>
         <div className="flex items-center gap-3">
           <h1 className="text-xl font-bold" data-testid="active-section-title" style={{ color: text }}>{section.label}</h1>
-          <span className="text-sm font-mono" style={{ color: muted }}>· {section.sublabel}</span>
-          <span className="ms-auto text-xs px-2 py-0.5 rounded-full font-mono"
+          <span className="text-sm" style={{ color: muted }}>· {section.sublabel}</span>
+          <span className="ms-auto text-xs px-2 py-0.5 rounded-full"
             style={{ background: isDisplay ? 'rgba(76,165,255,0.12)' : 'rgba(222,126,95,0.12)', color: isDisplay ? '#4CA5FF' : '#DE7E5F' }}>
             {isDisplay ? 'component' : `${section.tokens.length} tokens`}
           </span>
@@ -169,7 +169,7 @@ export default function EditorPanel() {
             })}
           </div>
           <div className="mt-8 pt-6" style={{ borderTop: `1px solid ${border}` }}>
-            <p className="text-xs font-mono" style={{ color: muted }}>
+            <p className="text-xs" style={{ color: muted }}>
               /* {section.id} · {section.tokens.length} design tokens · Sahib Design System v2.0 */
             </p>
           </div>

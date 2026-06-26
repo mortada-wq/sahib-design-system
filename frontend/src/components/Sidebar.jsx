@@ -40,7 +40,7 @@ export default function Sidebar() {
         </div>
         <div className="min-w-0">
           <div className="text-sm font-bold leading-tight" style={{ color: text }}>صاحب</div>
-          <div className="text-xs font-mono" style={{ color: muted }}>design system</div>
+          <div className="text-xs" style={{ color: muted }}>design system</div>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ export default function Sidebar() {
       <nav className="flex-1 overflow-y-auto py-2 px-2" data-testid="nav-sections">
         {grouped.map(group => (
           <div key={group.id} className="mb-3">
-            <div className="px-3 py-1 text-xs font-mono uppercase tracking-widest mb-1" style={{ color: groupLabel }}>
+            <div className="px-3 py-1 text-xs uppercase tracking-widest mb-1" style={{ color: groupLabel }}>
               {group.label}
             </div>
             {group.sections.map(section => {
@@ -69,8 +69,8 @@ export default function Sidebar() {
                     <div className="text-xs font-medium truncate">{section.label}</div>
                   </div>
                   {isDisplay
-                    ? <span className="text-xs px-1 rounded font-mono" style={{ background: 'rgba(76,165,255,0.1)', color: '#4CA5FF', fontSize: 9 }}>UI</span>
-                    : <span className="text-xs opacity-30 font-mono" style={{ fontSize: 9 }}>{section.tokens.length}</span>
+                    ? <span className="text-xs px-1 rounded" style={{ background: 'rgba(76,165,255,0.1)', color: '#4CA5FF', fontSize: 9 }}>UI</span>
+                    : <span className="text-xs opacity-30" style={{ fontSize: 9 }}>{section.tokens.length}</span>
                   }
                 </button>
               );
@@ -102,7 +102,7 @@ export default function Sidebar() {
             { fn: exportMD, label: 'MD', color: '#10B981', Icon: FileText, testId: 'export-md-button' },
           ].map(({ fn, label, color, Icon, testId }) => (
             <button key={label} data-testid={testId} onClick={fn} title={`تصدير ${label}`}
-              className="flex-1 flex items-center justify-center gap-1 px-1 py-1.5 rounded text-xs font-mono font-bold transition-all"
+              className="flex-1 flex items-center justify-center gap-1 px-1 py-1.5 rounded text-xs font-bold transition-all"
               style={{ background: isDark ? '#1e2730' : '#f0f2f5', color, border: `1px solid ${color}30` }}>
               <Icon size={11} />{label}
             </button>

@@ -59,7 +59,7 @@ export const TOKEN_SECTIONS = [
   ]},
 
   { id: 'typography', group: 'foundation', type: 'token', label: 'الخطوط', sublabel: 'Typography', icon: 'Type', tokens: [
-    { id: '--font',      labelAr: 'خط الواجهة',  type: 'text', defaultValue: "'Muna','Segoe UI','Arial',system-ui,sans-serif" },
+    { id: '--font',      labelAr: 'خط الواجهة',  type: 'text', defaultValue: "Muna" },
     { id: '--font-mono', labelAr: 'خط البرمجة',  type: 'text', defaultValue: "'IBM Plex Mono','Consolas',monospace" },
   ]},
 

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'Muna'", "'Segoe UI'", "'Arial'", 'system-ui', 'sans-serif'],
+        sans: ["Muna", "'Segoe UI'", "'Arial'", 'system-ui', 'sans-serif'],
         mono: ["'IBM Plex Mono'", "'Consolas'", 'monospace'],
       },
       borderRadius: {

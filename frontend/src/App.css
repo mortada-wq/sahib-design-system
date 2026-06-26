@@ -9,11 +9,11 @@ html, body, #root {
 }
 
 :root {
-  --font: 'Muna', 'Segoe UI', 'Arial', system-ui, sans-serif;
+  --font: Muna, 'Segoe UI', 'Arial', system-ui, sans-serif;
 }
 
 body {
-  font-family: 'Muna', 'Segoe UI', 'Arial', system-ui, sans-serif;
+  font-family: Muna, 'Segoe UI', 'Arial', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
