@@ -1,0 +1,129 @@
+{
+  "project_name": "Sahib Design Language Editor",
+  "theme": "dark",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "rtl_rules": {
+    "mandatory": true,
+    "instructions": [
+      "CRITICAL: Set dir=\"rtl\" on the outermost wrapping div or HTML tag. This automatically flips standard flexbox row directions.",
+      "CRITICAL: Use logical Tailwind properties. Replace `ml-` with `ms-`, `pr-` with `pe-`, `border-l` with `border-s`, `border-r` with `border-e`, `text-left` with `text-start`, `text-right` with `text-end`.",
+      "CRITICAL: Do NOT manually reverse flex containers using `flex-row-reverse` unless explicitly needed for a sub-component that breaks flow. Natively `flex-row` with `dir=\"rtl\"` places the first DOM element on the far right.",
+      "CRITICAL: Since Sidebar is the first element in the Flex row, it will visually appear on the Right."
+    ]
+  },
+  "typography": {
+    "headings": {
+      "font": "font-sans",
+      "custom_instruction": "Map font-sans to 'Muna', system-ui, sans-serif in tailwind config.",
+      "weight": "font-bold",
+      "tracking": "tracking-tight"
+    },
+    "body": {
+      "font": "font-sans",
+      "weight": "font-normal",
+      "tracking": "tracking-normal"
+    },
+    "code_and_tokens": {
+      "font": "font-mono",
+      "custom_instruction": "Map font-mono to 'IBM Plex Mono', monospace in tailwind config.",
+      "weight": "font-medium"
+    }
+  },
+  "colors": {
+    "brand_protected": {
+      "orange": "#DE7E5F"
+    },
+    "dark_theme": {
+      "background": "#0A0A0A",
+      "foreground": "#FFFFFF",
+      "surface": "#171717",
+      "border": "#262626",
+      "muted": "#1F1F1F",
+      "muted_foreground": "#A3A3A3",
+      "primary": "#DE7E5F",
+      "primary_foreground": "#0A0A0A"
+    },
+    "light_theme": {
+      "background": "#F9F9F9",
+      "foreground": "#0A0A0A",
+      "surface": "#FFFFFF",
+      "border": "#E5E5E5",
+      "muted": "#F5F5F5",
+      "muted_foreground": "#737373",
+      "primary": "#DE7E5F",
+      "primary_foreground": "#FFFFFF"
+    }
+  },
+  "layout": {
+    "strategy": "The Control Room Grid",
+    "structure": "Three-pane horizontal split. Container uses `h-screen w-full flex bg-background text-foreground overflow-hidden`.",
+    "panes": [
+      {
+        "name": "Sidebar (Navigation)",
+        "dom_order": 1,
+        "visual_position": "Right (due to RTL)",
+        "classes": "w-64 flex-shrink-0 border-e border-border bg-surface flex flex-col h-full",
+        "content": "Branding (Sahib Design), Navigation Links (Tokens, Spacing, Typography, etc), Theme Toggle, Action Buttons (Save/Export)."
+      },
+      {
+        "name": "Editor Panel",
+        "dom_order": 2,
+        "visual_position": "Center",
+        "classes": "flex-1 flex flex-col h-full bg-background overflow-y-auto relative",
+        "content": "Contextual Token Editor based on selected sidebar item. Features grids of inputs, color pickers, and range sliders."
+      },
+      {
+        "name": "Live Preview Panel",
+        "dom_order": 3,
+        "visual_position": "Left (due to RTL)",
+        "classes": "w-[400px] 2xl:w-[500px] flex-shrink-0 border-s border-border bg-muted/30 p-8 overflow-y-auto hidden lg:flex flex-col gap-12",
+        "content": "Live representation of the tokens. Example buttons, text hierarchies, spacing blocks, color swatches. Updates instantly."
+      }
+    ]
+  },
+  "components": {
+    "color_picker": {
+      "description": "Combines a native input[type='color'] styled as a circular swatch, paired with a text input for the HEX code.",
+      "classes": "flex items-center gap-3 p-2 rounded-md border border-border bg-surface shadow-sm focus-within:border-primary"
+    },
+    "token_input": {
+      "description": "Text or number input for spacing/radius/typography values.",
+      "classes": "w-full bg-transparent font-mono text-sm focus:outline-none placeholder:text-muted-foreground"
+    },
+    "token_card": {
+      "description": "Card holding a single token editable field.",
+      "classes": "p-4 border border-border rounded-lg bg-surface flex flex-col gap-2 transition-colors hover:border-primary/50"
+    },
+    "section_header": {
+      "description": "Sticky header for each token section.",
+      "classes": "sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border px-8 py-6"
+    }
+  },
+  "motion": {
+    "interaction": "Fast, utilitarian feedback.",
+    "hover_state": "Slight border highlight `hover:border-primary/50`. No heavy shadows."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "instruction": "Use lucide-react icons for the sidebar navigation (Palette, Type, Maximize, Layers, Moon, Sun, Save, Download)."
+  },
+  "image_urls": {
+    "preview_hero_image": {
+      "url": "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMDNkJTIwZ2VvbWV0cmljJTIwc2hhcGVzfGVufDB8fHx8MTc4MjQ2NjQ3N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract 3D geometric shape for the live preview sample hero card."
+    }
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: The entire app must be written with `dir=\"rtl\"` in mind. The root element must have `dir=\"rtl\"`.",
+    "Do NOT use `flex-row-reverse` to force right-to-left. `dir=\"rtl\"` handles it natively. Simply place the Sidebar first in your JSX, then Editor, then Preview.",
+    "Initialize state with default Sahib design tokens (Colors, Typography, Spacing, Radius, etc).",
+    "Create a 'useTokens' context or complex state object to store and pass tokens. Values should update live in the Live Preview panel.",
+    "The Save to LocalStorage functionality should stringify the current tokens state.",
+    "The Export functionality should generate downloadable blobs for .json, .css, and .md.",
+    "Apply `font-sans` to UI text, and `font-mono` to token values and input fields.",
+    "All interactive elements MUST have a `data-testid` attribute (e.g., `data-testid=\"export-json-button\"`).",
+    "Use standard HTML `input type='color'` for the color picker, styled appropriately.",
+    "Use Tailwind dark mode class strategy. Provide a toggle in the sidebar that switches the `dark` class on the root element.",
+    "The Live Preview panel must apply the user-edited tokens via inline styles (e.g. `style={{ backgroundColor: tokens.colors.primary, borderRadius: tokens.radius.md }}`) to reflect changes instantly."
+  ]
+}
