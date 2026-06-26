@@ -1,55 +1,33 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import '@/App.css';
+import { TokensProvider, useTokens } from '@/context/TokensContext';
+import Sidebar from '@/components/Sidebar';
+import EditorPanel from '@/components/EditorPanel';
+import PreviewPanel from '@/components/PreviewPanel';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
+function AppContent() {
+  const { isDark } = useTokens();
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div
+      dir="rtl"
+      data-testid="app-root"
+      className={`h-screen w-full flex overflow-hidden font-sans ${isDark ? 'dark' : ''}`}
+      style={{ background: isDark ? '#0d1215' : '#f0f2f5', color: isDark ? '#e4e8eb' : '#1A2126' }}
+    >
+      {/* Sidebar: first in DOM → appears on RIGHT in RTL */}
+      <Sidebar />
+      {/* Editor: center */}
+      <EditorPanel />
+      {/* Preview: last in DOM → appears on LEFT in RTL */}
+      <PreviewPanel />
     </div>
   );
-};
+}
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <TokensProvider>
+      <AppContent />
+    </TokensProvider>
   );
 }
 
