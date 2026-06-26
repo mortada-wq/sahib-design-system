@@ -73,3 +73,8 @@ Build an interactive Design Language Editor at design.sahib.cc. Users can view, 
 - [ ] Search/filter tokens
 - [ ] Shareable URL with encoded token state
 - [ ] WCAG accessibility checker
+
+## Changelog (Feb 2026)
+- Fixed: حقول الإدخال (Inputs) section was blank — EditorPanel's DisplaySection now injects all design token CSS vars (tokenVars via useMemo)
+- Fixed: Sidebar brand header — replaced orange "DS" rounded square with actual Sahib SVG icon (IMG_ICON)
+- Fixed: Global Muna font — applied to body, :root --font var, App.js root div (removed font-sans Tailwind override)
