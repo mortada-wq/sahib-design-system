@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useTokens } from '@/context/TokensContext';
 import { TOKEN_SECTIONS, SECTION_GROUPS } from '@/constants/defaultTokens';
+import { IMG_ICON } from '@/constants/brandAssets';
 
 const ICON_MAP = {
   Palette, CircleDot, Sun, Moon, Type, Maximize2, CornerDownRight, Layers, Zap, LayoutTemplate,
@@ -34,8 +35,8 @@ export default function Sidebar() {
 
       {/* Brand */}
       <div className="px-4 py-3.5 flex items-center gap-3 flex-shrink-0" style={{ borderBottom: `1px solid ${border}` }}>
-        <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#DE7E5F' }}>
-          <span className="text-white text-xs font-bold font-mono">DS</span>
+        <div className="flex-shrink-0">
+          <img src={IMG_ICON} alt="Sahib" style={{ width: 28, height: 28, objectFit: 'contain', display: 'block' }} />
         </div>
         <div className="min-w-0">
           <div className="text-sm font-bold leading-tight" style={{ color: text }}>صاحب</div>

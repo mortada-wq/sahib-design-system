@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTokens } from '@/context/TokensContext';
 import { TOKEN_SECTIONS } from '@/constants/defaultTokens';
 import { Lock } from 'lucide-react';
@@ -74,9 +75,24 @@ function TextTokenCard({ token, value, onChange, isDark }) {
 }
 
 /* ── Display section router ────────────────── */
-function DisplaySection({ sectionId, isDark }) {
-  const bg     = isDark ? '#161b1f' : '#ffffff';
-  const border = isDark ? '#1e2730' : '#e5e7eb';
+function DisplaySection({ sectionId }) {
+  const { tokens, isDark } = useTokens();
+
+  // Inject all design-token CSS vars so display components can use var(--*)
+  const tokenVars = useMemo(() => {
+    const vars = {};
+    TOKEN_SECTIONS.forEach(section => {
+      if (section.id === 'dark') return;
+      section.tokens.forEach(t => { vars[t.id] = tokens[t.id]; });
+    });
+    const darkSection = TOKEN_SECTIONS.find(s => s.id === 'dark');
+    if (isDark && darkSection) {
+      darkSection.tokens.forEach(t => {
+        vars[t.cssExportVar || t.id] = tokens[t.id];
+      });
+    }
+    return vars;
+  }, [tokens, isDark]);
 
   const DISPLAY_MAP = {
     logos:    <LogosDisplay />,
@@ -96,14 +112,15 @@ function DisplaySection({ sectionId, isDark }) {
   if (!component) return <div style={{ padding: 32, color: '#697883' }}>لا يوجد معاينة لهذا القسم</div>;
 
   return (
-    <div style={{
-      padding: '24px 32px',
-      background: isDark ? '#0d1215' : '#f0f2f5',
-    }}>
-      {/* Live preview vars applied */}
-      <div data-testid={`display-${sectionId}`} style={{ '--editor-bg': bg }}>
-        {component}
-      </div>
+    <div
+      data-testid={`display-${sectionId}`}
+      style={{
+        padding: '24px 32px',
+        background: isDark ? '#0d1215' : '#f0f2f5',
+        ...tokenVars,
+      }}
+    >
+      {component}
     </div>
   );
 }
@@ -139,7 +156,7 @@ export default function EditorPanel() {
 
       {/* Content */}
       {isDisplay ? (
-        <DisplaySection sectionId={activeSection} isDark={isDark} />
+        <DisplaySection sectionId={activeSection} />
       ) : (
         <div className="p-8">
           <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>

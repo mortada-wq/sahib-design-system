@@ -10,8 +10,8 @@ function AppContent() {
     <div
       dir="rtl"
       data-testid="app-root"
-      className={`h-screen w-full flex overflow-hidden font-sans ${isDark ? 'dark' : ''}`}
-      style={{ background: isDark ? '#0d1215' : '#f0f2f5', color: isDark ? '#e4e8eb' : '#1A2126' }}
+      className={`h-screen w-full flex overflow-hidden ${isDark ? 'dark' : ''}`}
+      style={{ background: isDark ? '#0d1215' : '#f0f2f5', color: isDark ? '#e4e8eb' : '#1A2126', fontFamily: "'Muna', 'Segoe UI', 'Arial', system-ui, sans-serif" }}
     >
       {/* Sidebar: first in DOM → appears on RIGHT in RTL */}
       <Sidebar />

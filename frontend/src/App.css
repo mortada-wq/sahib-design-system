@@ -8,6 +8,16 @@ html, body, #root {
   overflow: hidden;
 }
 
+:root {
+  --font: 'Muna', 'Segoe UI', 'Arial', system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Muna', 'Segoe UI', 'Arial', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Scrollbar styling for dark theme */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
