@@ -127,7 +127,7 @@ export default function EditorPanel() {
         style={{ background: headerBg, borderBottom: `1px solid ${border}` }}
       >
         <div className="flex items-baseline gap-3">
-          <h1 className="text-xl font-bold" style={{ color: text }}>{section.label}</h1>
+          <h1 className="text-xl font-bold" data-testid="active-section-title" style={{ color: text }}>{section.label}</h1>
           <span className="text-sm" style={{ color: muted, fontFamily: "'IBM Plex Mono', monospace" }}>
             · {section.sublabel}
           </span>
